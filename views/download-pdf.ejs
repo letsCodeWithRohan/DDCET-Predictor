@@ -12,21 +12,20 @@ th{
     width:max-content;
     padding: 5px;
     border: 1px solid #bbb;
+    font-size: 12px;
 }
 td{
     padding: 5px;
+    font-size: 12px;
     border: 1px solid #bbb;
     text-align: center;
 }
 </style>
 <body class="w-full min-h-[100dvh] font-[Outfit] flex flex-col">
-    <header class="px-5 py-3 border-b-[1px] flex justify-center md:justify-start">
-        <a href="/" class="text-2xl font-semibold">D2D College Finder</a>
+    <header class="p-3 border-b-[1px] flex justify-center">
+        <a href="/" class="text-[16px] font-semibold">D2D College Finder</a>
     </header>
-    <div class="flex justify-between items-center px-5 pt-3">
-        <h1 class="text-lg">Colleges Found : <%= colleges.length %></h1>
-        <a href="#" id="downloadLink" class="p-2 bg-violet-500 text-white rounded shadow-lg">Download PDF</a>
-    </div>
+    <h1 class="text-[14px] p-3">Colleges Found : <%= colleges.length %></h1>
     <main class="overflow-x-auto flex-1 p-5">
     <table class="w-full border-[1px] border-collapse">
         <thead class="border-[1px] bg-slate-200">
@@ -67,13 +66,8 @@ td{
         </tbody>
     </table>
     </main>
-    <footer class="p-3 text-center border-t-[1px]">
+    <footer class="p-3 text-center text-[11px] border-t-[1px]">
         Made with <span class="text-red-500">❤</span> By Chaudhari Rohan
     </footer>
-    <script>
-  const query = window.location.search; // e.g., "?instituteType=Govt&branch=CSE"
-  const downloadLink = document.getElementById("downloadLink");
-  downloadLink.href = "/download-pdf" + query;
-</script>
 </body>
 </html>

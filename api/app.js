@@ -5,6 +5,8 @@ const connectDB = require("../config/connectDB")
 const dotenv = require("dotenv")
 const serverless = require("serverless-http");
 const path = require('path');
+const ejs = require("ejs");
+const chromium = require("chrome-aws-lambda");
 dotenv.config()
 
 let port = process.env.PORT || 3000
@@ -54,7 +56,47 @@ app.get("/filter",async (req,res) => {
     }
 })
 
-// app.listen(port, () => console.log(`Server running at localhost:${port}`))
+// Route to download pdf
+router.get("/download-pdf", async (req, res) => {
+  try {
+    const { instituteType, admissionCategory, branch, rank } = req.query;
+    const mongoQuery = {};
+
+    if (instituteType) mongoQuery.instituteType = instituteType;
+    if (admissionCategory) mongoQuery.admissionCategory = admissionCategory;
+    if (branch) mongoQuery.branch = branch;
+    if (rank) mongoQuery.lastAdmittedDDCETRank = { $gte: parseInt(rank) };
+
+    const colleges = await dataModel
+      .find(mongoQuery)
+      .sort("firstAdmittedDDCETRank instituteType -quota");
+
+    const html = await ejs.renderFile(
+      path.join(__dirname, "../views/download-pdf.ejs"),
+      { colleges }
+    );
+
+    const browser = await chromium.puppeteer.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath,
+      headless: chromium.headless,
+    });
+
+    const page = await browser.newPage();
+    await page.setContent(html, { waitUntil: "networkidle0" });
+    const pdfBuffer = await page.pdf({ format: "A4" });
+
+    await browser.close();
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", "attachment; filename=colleges.pdf");
+    res.send(pdfBuffer);
+  } catch (err) {
+    console.error("PDF generation error:", err);
+    res.status(500).json({ error: "Failed to generate PDF", details: err.message });
+  }
+});
 
 // Export as serverless function
 module.exports = app;
