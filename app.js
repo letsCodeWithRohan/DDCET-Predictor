@@ -49,4 +49,4 @@ app.get("/filter",async (req,res) => {
     }
 })
 
-app.listen(port,'0.0.0.0' , () => console.log(`Server running at localhost:${port}`))
+app.listen(port, () => console.log(`Server running at localhost:${port}`))
