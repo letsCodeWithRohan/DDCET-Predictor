@@ -4,6 +4,7 @@ const dataModel = require("../models/merit")
 const connectDB = require("../config/connectDB")
 const dotenv = require("dotenv")
 const serverless = require("serverless-http");
+const path = require('path');
 dotenv.config()
 
 let port = process.env.PORT || 3000
