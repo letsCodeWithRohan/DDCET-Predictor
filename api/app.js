@@ -7,6 +7,7 @@ const serverless = require("serverless-http");
 const path = require('path');
 const ejs = require("ejs");
 const chromium = require("chrome-aws-lambda");
+const puppeteer = require('puppeteer-core');
 dotenv.config()
 
 let port = process.env.PORT || 3000
@@ -76,12 +77,12 @@ app.get("/download-pdf", async (req, res) => {
       { colleges }
     );
 
-    const browser = await chromium.puppeteer.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath,
-      headless: chromium.headless,
-    });
+    const browser = await puppeteer.launch({
+  args: chromium.args,
+  defaultViewport: chromium.defaultViewport,
+  executablePath: await chromium.executablePath,
+  headless: chromium.headless,
+});
 
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: "networkidle0" });
