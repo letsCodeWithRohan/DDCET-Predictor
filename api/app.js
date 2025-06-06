@@ -19,8 +19,9 @@ app.use(express.json());
 
 app.get("/",async  (req, res) => {
     let branches = await dataModel.distinct("branch");
+    let institutes = await dataModel.distinct("nameOfInstitute");
     let categories = await dataModel.distinct("admissionCategory");
-    res.render("home",{branches,categories})
+    res.render("home",{branches,categories,institutes})
 })
 
 app.get("/getall", async (req, res) => {
