@@ -1,8 +1,9 @@
 const express = require("express")
 const app = express()
-const dataModel = require("./models/merit")
-const connectDB = require("./config/connectDB")
+const dataModel = require("../models/merit")
+const connectDB = require("../config/connectDB")
 const dotenv = require("dotenv")
+const serverless = require("serverless-http");
 dotenv.config()
 
 let port = process.env.PORT || 3000
@@ -10,6 +11,9 @@ let port = process.env.PORT || 3000
 connectDB()
 
 app.set("view engine","ejs")
+app.set("views", path.join(__dirname, "../views"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get("/",async  (req, res) => {
     let branches = await dataModel.distinct("branch");
@@ -49,4 +53,8 @@ app.get("/filter",async (req,res) => {
     }
 })
 
-app.listen(port, () => console.log(`Server running at localhost:${port}`))
+// app.listen(port, () => console.log(`Server running at localhost:${port}`))
+
+// Export as serverless function
+module.exports = app;
+module.exports.handler = serverless(app);

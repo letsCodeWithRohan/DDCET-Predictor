@@ -16,6 +16,7 @@
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "mongoose": "^8.15.1",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "serverless-http": "^3.2.0"
   }
 }
