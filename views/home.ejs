@@ -29,8 +29,14 @@
                     <option class="dark:text-white dark:bg-zinc-700" value="<%= category %>"><%= category %></option>
                 <% } %>
             </select>
+            <select name="nameOfInstitute" class="p-2 border-[1px] rounded border-slate-400">
+                <option value="">All Institutes</option>
+                <% for (let institute of institutes){ %>
+                    <option class="dark:text-white dark:bg-zinc-700" value="<%= institute %>"><%= institute %></option>
+                <% } %>
+            </select>
             <select name="instituteType" class="p-2 border-[1px] rounded border-slate-400">
-                <option class="dark:text-white dark:bg-zinc-700" value="">Both Types</option>
+                <option class="dark:text-white dark:bg-zinc-700" value="">ALL Types</option>
                 <option class="dark:text-white dark:bg-zinc-700" value="GOV" selected>Government</option>
                 <option class="dark:text-white dark:bg-zinc-700" value="SFI">Self Finance</option>
                 <option class="dark:text-white dark:bg-zinc-700" value="GIA">Government-Aid</option>
