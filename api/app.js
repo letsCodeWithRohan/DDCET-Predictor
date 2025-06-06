@@ -57,7 +57,7 @@ app.get("/filter",async (req,res) => {
 })
 
 // Route to download pdf
-router.get("/download-pdf", async (req, res) => {
+app.get("/download-pdf", async (req, res) => {
   try {
     const { instituteType, admissionCategory, branch, rank } = req.query;
     const mongoQuery = {};
