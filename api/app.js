@@ -32,7 +32,7 @@ app.get("/getall", async (req, res) => {
 
 app.get("/mock/getall", async (req, res) => {
     let allClgs = await mockModel.find()
-    res.render("colleges", { colleges : allClgs})
+    res.render("mock-results", { colleges : allClgs})
 })
 
 app.get("/filter",async (req,res) => {
@@ -60,6 +60,36 @@ app.get("/filter",async (req,res) => {
     try{
         let results = await dataModel.find(mongoQuery).sort("firstAdmittedDDCETRank instituteType -quota")
         res.render("colleges", {colleges :results})
+    }catch(err){
+        res.status(500).json({ error: err.message });
+    }
+})
+
+app.get("/mock/filter",async (req,res) => {
+    let {instituteType, admissionCategory, branch, nameOfInstitute} = req.query;
+    let userRank = req.query.rank;
+
+    let mongoQuery = {}
+
+    if(instituteType){
+        mongoQuery.instituteType = instituteType;
+    }
+    if(admissionCategory){
+        mongoQuery.admissionCategory = admissionCategory;
+    }
+    if(nameOfInstitute){
+        mongoQuery.nameOfInstitute = nameOfInstitute;
+    }
+    if(branch){
+        mongoQuery.branch = branch;
+    }
+    if(userRank){
+        let parsedRank = parseInt(userRank);
+        mongoQuery.closing = { $gte: parsedRank };
+    }
+    try{
+        let results = await dataModel.find(mongoQuery).sort("opening instituteType -quota")
+        res.render("mock-results", {colleges :results})
     }catch(err){
         res.status(500).json({ error: err.message });
     }

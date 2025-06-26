@@ -11,12 +11,12 @@
 </style>
 <body class="w-full min-h-[100dvh] font-[Outfit] flex flex-col dark:bg-zinc-900 dark:text-white dark:border-[#ddd]">
     <header class="p-3 border-b-[1px] flex justify-center md:justify-start">
-        <a href="/" class="text-2xl font-semibold">D2D College Finder</a>
+        <a href="/mock" class="text-2xl font-semibold">D2D College Finder</a>
     </header>
     <main class="flex-1 flex items-center justify-center">
-        <form action="/filter" class="dark:bg-zinc-800 gap-5 p-4 rounded-lg bg-slate-100 shadow-lg w-[80%] flex flex-col" method="get">
+        <form action="/mock/filter" class="dark:bg-zinc-800 gap-5 p-4 rounded-lg bg-slate-100 shadow-lg w-[80%] flex flex-col" method="get">
             <h1 class="text-xl text-center font-semibold dark:text-white text-slate-700">Enter Your DDCET 2025 Details</h1>
-            <h3 class="text-lg text-center">Find Based on Mock Results 2025 : <a href="/mock" class="text-blue-500 underline">Click Here</a></h3>
+            <h3 class="text-lg text-center">Find Based on Last Year Results 2024 : <a href="/" class="text-blue-500 underline">Click Here</a></h3>
             <input type="number" placeholder="Enter Your DDCET Rank" class="p-2 border-[1px] rounded border-slate-400" name="rank" required>
             <select name="branch" class="p-2 border-[1px] rounded border-slate-400">
                 <option value="">All Branches</option>
@@ -42,7 +42,7 @@
                 <option class="dark:text-white dark:bg-zinc-700" value="SFI">Self Finance</option>
                 <option class="dark:text-white dark:bg-zinc-700" value="GIA">Government-Aid</option>
             </select>
-            <p class="text-center text-md font-semibold">This results are founded based on 2024 D2D CUTOFF (PDF)</p>
+            <p class="text-center text-md font-semibold">This records will be founded based on 2025 Mock Result (PDF)</p>
             <button type="submit" class="p-2 bg-violet-500 rounded text-white cursor-pointer">Check Eligibility</button>
         </form>
     </main>
