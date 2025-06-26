@@ -26,9 +26,9 @@ app.get("/",async  (req, res) => {
 })
 
 app.get("/mock",async  (req, res) => {
-    let branches = await dataModel.distinct("branch");
-    let institutes = await dataModel.distinct("nameOfInstitute");
-    let categories = await dataModel.distinct("admissionCategory");
+    let branches = await mockModel.distinct("branch");
+    let institutes = await mockModel.distinct("nameOfInstitute");
+    let categories = await mockModel.distinct("admissionCategory");
     res.render("mock-home",{branches,categories,institutes})
 })
 
@@ -95,7 +95,7 @@ app.get("/mock/filter",async (req,res) => {
         mongoQuery.closing = { $gte: parsedRank };
     }
     try{
-        let results = await dataModel.find(mongoQuery).sort("opening instituteType -quota")
+        let results = await mockModel.find(mongoQuery).sort("opening instituteType -quota")
         res.render("mock-results", {colleges :results})
     }catch(err){
         res.status(500).json({ error: err.message });
