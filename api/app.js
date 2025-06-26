@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const dataModel = require("../models/merit")
+const mockModel = require("../models/mock")
 const connectDB = require("../config/connectDB")
 const dotenv = require("dotenv")
 const serverless = require("serverless-http");
@@ -26,6 +27,11 @@ app.get("/",async  (req, res) => {
 
 app.get("/getall", async (req, res) => {
     let allClgs = await dataModel.find()
+    res.render("colleges", { colleges : allClgs})
+})
+
+app.get("/mock/getall", async (req, res) => {
+    let allClgs = await mockModel.find()
     res.render("colleges", { colleges : allClgs})
 })
 

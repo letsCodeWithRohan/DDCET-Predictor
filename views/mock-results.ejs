@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Colleges</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+th{
+    width:max-content;
+    padding: 5px;
+    border: 1px solid #bbb;
+}
+td{
+    padding: 5px;
+    border: 1px solid #bbb;
+    text-align: center;
+}
+</style>
+<body class="w-full min-h-[100dvh] font-[Outfit] flex flex-col dark:bg-zinc-900 dark:text-white dark:border-[#ddd]">
+    <header class="p-3 border-b-[1px] flex justify-center md:justify-start">
+        <a href="/" class="text-2xl font-semibold">D2D College Finder</a>
+    </header>
+    <div class="flex items-center justify-between px-3 pt-3">
+        <a href="/" class="text-[14px] text-blue-500">< Go Back</a>
+        <h1 class="text-lg">Colleges Found : <%= colleges.length %></h1>
+    </div>
+    <main class="overflow-x-auto flex-1 p-3">
+    <table class="w-full border-[1px] border-collapse">
+        <thead class="border-[1px] dark:bg-zinc-700 bg-slate-200">
+            <tr class="border-[#ddd]">
+                <th>Sr. No</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Branch</th>
+                <th>Quota</th>
+                <th>Category</th>
+                <th>Opening</th>
+                <th>Closing</th>
+            </tr>
+        </thead>
+        <tbody class="dark:bg-zinc-800 bg-slate-100">
+            <% if(colleges.length > 0){ %>
+            <% colleges.map((data,index) => { %>
+            <tr class="border-[#ddd]">
+                <td><%= index + 1 %></td>
+                <td><%= data.nameOfInstitute %></td>
+                <td><%= data.instituteType %></td>
+                <td><%= data.branch %></td>
+                <td><%= data.quota %></td>
+                <td><%= data.admissionCategory %></td>
+                <td><%= data.opening %></td>
+                <td><%= data.closing %></td>
+            </tr>
+            <% }) %>
+            <% } else {%>
+             <tr class="border-[#ddd]">
+                <td colspan="8">No Records Found</td>
+             </tr>
+             <% } %>
+        </tbody>
+    </table>
+    </main>
+    <footer class="p-3 text-center border-t-[1px]">
+        Made with <span class="text-red-500">❤</span> By Chaudhari Rohan
+    </footer>
+</body>
+</html>
