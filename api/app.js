@@ -25,6 +25,13 @@ app.get("/",async  (req, res) => {
     res.render("home",{branches,categories,institutes})
 })
 
+app.get("/mock",async  (req, res) => {
+    let branches = await dataModel.distinct("branch");
+    let institutes = await dataModel.distinct("nameOfInstitute");
+    let categories = await dataModel.distinct("admissionCategory");
+    res.render("mock-home",{branches,categories,institutes})
+})
+
 app.get("/getall", async (req, res) => {
     let allClgs = await dataModel.find()
     res.render("colleges", { colleges : allClgs})
