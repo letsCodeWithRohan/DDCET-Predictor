@@ -1,50 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Colleges</title>
+    <title>Mock Home | DDCET Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-th{
-    width:max-content;
-    padding: 5px;
-    border: 1px solid #bbb;
-}
-td{
-    padding: 5px;
-    border: 1px solid #bbb;
-    text-align: center;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 </style>
-<body class="w-full min-h-[100dvh] font-[Outfit] flex flex-col dark:bg-zinc-900 dark:text-white dark:border-[#ddd]">
-    <header class="p-3 border-b-[1px] flex justify-center md:justify-start">
-        <a href="/mock" class="text-2xl font-semibold">D2D College Finder</a>
-    </header>
-    <div class="flex items-center justify-between px-3 pt-3">
-        <a href="/mock" class="text-[14px] text-blue-500">< Go Back</a>
-        <h1 class="text-lg">Colleges Found : <%= colleges.length %></h1>
+
+<body class="font-[Outfit] flex flex-col min-h-screen bg-base-200 text-base-content">
+    <!-- Header Component -->
+    <div class="navbar bg-base-100 shadow-sm">
+        <a href="/mock" class="font-semibold text-xl ps-3">D2D College Finder</a>
     </div>
-    <main class="overflow-x-auto flex-1 p-3">
-    <table class="w-full border-[1px] border-collapse">
-        <thead class="border-[1px] dark:bg-zinc-700 bg-slate-200">
-            <tr class="border-[#ddd]">
-                <th>Sr. No</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Branch</th>
-                <th>Quota</th>
-                <th>Category</th>
-                <th>Opening</th>
-                <th>Closing</th>
-            </tr>
-        </thead>
-        <tbody class="dark:bg-zinc-800 bg-slate-100">
-            <% if(colleges.length > 0){ %>
+    <!-- Header Ends -->
+    <div class="flex items-center justify-between p-3">
+        <a href="/mock" class="text-[14px] text-blue-500 flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+            </svg>Go Back</a>
+        <h1 class="text-md">Colleges Found : 21
+        </h1>
+    </div>
+    <main class="p-2">
+        <div class="overflow-x-auto rounded-box border border-base-content/5">
+            <table class="table md:table-md table-sm">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Institute Name</th>
+                        <th>Branch</th>
+                        <th>Category</th>
+                        <th>Quota</th>
+                        <th>Institute Type</th>
+                        <th>Opening</th>
+                        <th>Closing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(colleges.length > 0){ %>
             <% colleges.map((data,index) => { %>
-            <tr class="border-[#ddd]">
+            <tr>
                 <td><%= index + 1 %></td>
                 <td><%= data.nameOfInstitute %></td>
                 <td><%= data.instituteType %></td>
@@ -56,14 +58,15 @@ td{
             </tr>
             <% }) %>
             <% } else {%>
-             <tr class="border-[#ddd]">
+             <tr>
                 <td colspan="8">No Records Found</td>
              </tr>
              <% } %>
-        </tbody>
-    </table>
+                </tbody>
+            </table>
+        </div>
     </main>
-    <footer class="p-3 text-center border-t-[1px]">
+    <footer class="p-3 text-center bg-base-100">
         Made with <span class="text-red-500">❤</span> By Chaudhari Rohan
     </footer>
 </body>
