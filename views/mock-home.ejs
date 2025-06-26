@@ -1,53 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D2D Colleges Finder</title>
+    <title>Home | DDCET Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 </style>
-<body class="w-full min-h-[100dvh] font-[Outfit] flex flex-col dark:bg-zinc-900 dark:text-white dark:border-[#ddd]">
-    <header class="p-3 border-b-[1px] flex justify-center md:justify-start">
-        <a href="/mock" class="text-2xl font-semibold">D2D College Finder</a>
-    </header>
-    <main class="flex-1 flex items-center justify-center">
-        <form action="/mock/filter" class="dark:bg-zinc-800 gap-5 p-4 rounded-lg bg-slate-100 shadow-lg w-[80%] flex flex-col" method="get">
-            <h1 class="text-xl text-center font-semibold dark:text-white text-slate-700">Enter Your DDCET 2025 Details</h1>
-            <h3 class="text-lg text-center">Find Based on Last Year Results 2024 : <a href="/" class="text-blue-500 underline">Click Here</a></h3>
-            <input type="number" placeholder="Enter Your DDCET Rank" class="p-2 border-[1px] rounded border-slate-400" name="rank" required>
-            <select name="branch" class="p-2 border-[1px] rounded border-slate-400">
-                <option value="">All Branches</option>
-                <% for (let branch of branches){ %>
-                    <option class="dark:text-white dark:bg-zinc-700" value="<%= branch %>"><%= branch %></option>
-                <% } %>
-            </select>
-            <select name="admissionCategory" class="p-2 border-[1px] rounded border-slate-400">
-                <option value="">All Categories</option>
-                <% for (let category of categories){ %>
-                    <option class="dark:text-white dark:bg-zinc-700" value="<%= category %>"><%= category %></option>
-                <% } %>
-            </select>
-            <select name="nameOfInstitute" class="p-2 border-[1px] rounded border-slate-400">
-                <option value="">All Institutes</option>
-                <% for (let institute of institutes){ %>
-                    <option class="dark:text-white dark:bg-zinc-700" value="<%= institute %>"><%= institute %></option>
-                <% } %>
-            </select>
-            <select name="instituteType" class="p-2 border-[1px] rounded border-slate-400">
-                <option class="dark:text-white dark:bg-zinc-700" value="">ALL Types</option>
-                <option class="dark:text-white dark:bg-zinc-700" value="GOV" selected>Government</option>
-                <option class="dark:text-white dark:bg-zinc-700" value="SFI">Self Finance</option>
-                <option class="dark:text-white dark:bg-zinc-700" value="GIA">Government-Aid</option>
-            </select>
-            <p class="text-center text-md font-semibold">This records will be founded based on 2025 Mock Result (PDF)</p>
-            <button type="submit" class="p-2 bg-violet-500 rounded text-white cursor-pointer">Check Eligibility</button>
+
+<body class="font-[Outfit] flex flex-col min-h-[100dvh] bg-base-200 text-base-content">
+    <!-- Header Component -->
+    <div class="navbar bg-base-100 shadow-sm px-5">
+        <div class="flex-1">
+        <a href="/mock" class="font-semibold text-xl ps-3">D2D College Finder</a>
+        </div>
+        <div class="flex-none">
+            <a href="/" class="btn btn-primary btn-sm">Results 2024</a>
+        </div>
+    </div>
+    <!-- Header Ends -->
+    <main class="flex justify-center items-center flex-1">
+        <form action="/mock/filter" method="post" class="bg-base-100 p-3 rounded-md flex items-center gap-1 md:w-[40%] w-4/5 flex-col">
+            <h1 class="text-xl font-semibold">Enter Your Preferences Here</h1>
+            <hr class="w-full h-1 bg-base-100">
+            <fieldset class="fieldset w-full">
+                <legend class="fieldset-legend text-slate-300">What is your DDCET Rank?</legend>
+                <input name="rank" required type="number" class="input w-full" placeholder="Type here" />
+            </fieldset>
+            <fieldset class="fieldset w-full">
+                <legend class="fieldset-legend text-slate-300">Branch</legend>
+                <select class="select w-full" name="branch">
+                    <option disabled selected value="">All Branches</option>
+                    <% for (let branch of branches){ %>
+                        <option class="dark:text-white dark:bg-zinc-700" value="<%= branch %>"><%= branch %></option>
+                    <% } %>
+                </select>
+            </fieldset>
+            
+            <fieldset class="fieldset w-full">
+                <legend class="fieldset-legend text-slate-300">Admission Category</legend>
+                <select class="select w-full" name="admissionCategory">
+                    <option disabled selected value="">All Categories</option>
+                    <% for (let category of categories){ %>
+                        <option class="dark:text-white dark:bg-zinc-700" value="<%= category %>"><%= category %></option>
+                    <% } %>
+                </select>
+            </fieldset>
+            <fieldset class="fieldset w-full">
+                <legend class="fieldset-legend text-slate-300">Name of Institute</legend>
+                <select name="nameOfInstitute" class="select w-full">
+                    <option disabled selected value="">All Institutes</option>
+                    <% for (let institute of institutes){ %>
+                        <option class="dark:text-white dark:bg-zinc-700" value="<%= institute %>"><%= institute %></option>
+                    <% } %>
+                </select>
+            </fieldset>
+            <fieldset class="fieldset w-full">
+                <legend class="fieldset-legend text-slate-300">Institute Type</legend>
+                <select class="select w-full" name="instituteType">
+                    <option disabled selected value="">All Types</option>
+                    <option value="GOV">Government</option>
+                    <option value="GIA">Grant-Aid</option>
+                    <option value="SFI">Self Finance</option>
+                </select>
+            </fieldset>
+            <button class="btn btn-primary w-full" type="submit">Show Results</button>
         </form>
     </main>
     <footer class="p-3 text-center border-t-[1px]">
         Made with <span class="text-red-500">❤</span> By Chaudhari Rohan
     </footer>
 </body>
+
 </html>
