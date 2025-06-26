@@ -44,24 +44,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% if(colleges.length > 0){ %>
-            <% colleges.map((data,index) => { %>
-            <tr>
-                <td><%= index + 1 %></td>
-                <td><%= data.nameOfInstitute %></td>
-                <td><%= data.instituteType %></td>
-                <td><%= data.branch %></td>
-                <td><%= data.quota %></td>
-                <td><%= data.admissionCategory %></td>
-                <td><%= data.opening %></td>
-                <td><%= data.closing %></td>
-            </tr>
-            <% }) %>
-            <% } else {%>
-             <tr>
-                <td colspan="8">No Records Found</td>
-             </tr>
-             <% } %>
+                    <% if(colleges.length> 0){ %>
+                        <% colleges.map((data,index)=> { %>
+                            <tr>
+                                <td>
+                                    <%= index + 1 %>
+                                </td>
+                                <td>
+                                    <%= data.nameOfInstitute %>
+                                </td>
+                                <td>
+                                    <%= data.instituteType %>
+                                </td>
+                                <td>
+                                    <%= data.branch %>
+                                </td>
+                                <td>
+                                    <%= data.quota %>
+                                </td>
+                                <td>
+                                    <%= data.admissionCategory %>
+                                </td>
+                                <td>
+                                    <%= data.opening %>
+                                </td>
+                                <td>
+                                    <%= data.closing %>
+                                </td>
+                            </tr>
+                            <% }) %>
+                                <% } else {%>
+                                    <tr>
+                                        <td colspan="8">No Records Found</td>
+                                    </tr>
+                                    <% } %>
                 </tbody>
             </table>
         </div>
@@ -70,4 +86,5 @@
         Made with <span class="text-red-500">❤</span> By Chaudhari Rohan
     </footer>
 </body>
+
 </html>
