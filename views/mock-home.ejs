@@ -34,7 +34,7 @@
             <fieldset class="fieldset w-full">
                 <legend class="fieldset-legend text-slate-300">Branch</legend>
                 <select class="select w-full" name="branch">
-                    <option disabled selected value="">All Branches</option>
+                    <option selected value="">All Branches</option>
                     <% for (let branch of branches){ %>
                         <option class="dark:text-white dark:bg-zinc-700" value="<%= branch %>"><%= branch %></option>
                     <% } %>
@@ -44,7 +44,7 @@
             <fieldset class="fieldset w-full">
                 <legend class="fieldset-legend text-slate-300">Admission Category</legend>
                 <select class="select w-full" name="admissionCategory">
-                    <option disabled selected value="">All Categories</option>
+                    <option selected value="">All Categories</option>
                     <% for (let category of categories){ %>
                         <option class="dark:text-white dark:bg-zinc-700" value="<%= category %>"><%= category %></option>
                     <% } %>
@@ -53,7 +53,7 @@
             <fieldset class="fieldset w-full">
                 <legend class="fieldset-legend text-slate-300">Name of Institute</legend>
                 <select name="nameOfInstitute" class="select w-full">
-                    <option disabled selected value="">All Institutes</option>
+                    <option selected value="">All Institutes</option>
                     <% for (let institute of institutes){ %>
                         <option class="dark:text-white dark:bg-zinc-700" value="<%= institute %>"><%= institute %></option>
                     <% } %>
@@ -62,7 +62,7 @@
             <fieldset class="fieldset w-full">
                 <legend class="fieldset-legend text-slate-300">Institute Type</legend>
                 <select class="select w-full" name="instituteType">
-                    <option disabled selected value="">All Types</option>
+                    <option selected value="">All Types</option>
                     <option value="GOV">Government</option>
                     <option value="GIA">Grant-Aid</option>
                     <option value="SFI">Self Finance</option>
